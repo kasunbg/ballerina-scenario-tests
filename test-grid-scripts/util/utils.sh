@@ -152,3 +152,10 @@ build_docker_image() {
     local image_location=$3
     docker build -t ${docker_user}/${image}:${tag} ${image_location}
 }
+
+# Deletes all k8s resources in the used namespace.
+function cleanup_k8s_resources() {
+    local -n __deployment_cleanup_config=$1
+    local namespace=${__deployment_cleanup_config[NamespacesToCleanup]}
+    kubectl -n ${namespace} delete deployment,po,svc --all
+}

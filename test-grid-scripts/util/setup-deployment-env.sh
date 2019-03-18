@@ -45,7 +45,7 @@ setup_deployment_env() {
     install_ballerina ${ballerina_version}
 
     # Store namespace to be cleaned up at the end
-    echo "NamespacesToCleanup=${custom_namespace}" >> ${dep_output_dir}/infrastructure-cleanup.properties
+    echo "NamespacesToCleanup=${custom_namespace}" >> ${dep_output_dir}/deployment-cleanup.properties
 }
 
 setup_deployment_env $1 $2

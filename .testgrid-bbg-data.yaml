@@ -34,10 +34,6 @@ infrastructureConfig:
         type: SHELL
         phase: CREATE
         file: bbg/common_infra.sh
-      - name: destroy
-        file: bbg/common-cleanup.sh
-        type: SHELL
-        phase: DESTROY
 deploymentConfig:
   deploymentPatterns:
     - name: 'data-backed-service'
@@ -52,6 +48,10 @@ deploymentConfig:
           inputParameters:
             BallerinaVersion: "0.990.3"
             isDebugEnabled: "false"
+        - name: 'destroy'
+          file: test-grid-scripts/util/common-deployment-cleanup.sh
+          type: SHELL
+          phase: DESTROY
 scenarioConfigs:
 - testType: TESTNG
   remoteRepository: "https://github.com/ballerina-platform/ballerina-scenario-tests.git"
