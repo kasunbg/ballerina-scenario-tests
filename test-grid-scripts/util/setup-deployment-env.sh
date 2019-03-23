@@ -33,7 +33,7 @@ setup_deployment_env() {
     readonly docker_password=${infra_config["dockerhub_ballerina_scenarios_password"]}
 
     # Update kube config to point to the existing cluster
-    aws eks update-kubeconfig --name ${cluster_name}
+    #aws eks update-kubeconfig --name ${cluster_name}
     # Create a custom random namespace
     custom_namespace=$(generate_random_namespace)
     kubectl create namespace ${custom_namespace}
