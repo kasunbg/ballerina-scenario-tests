@@ -46,6 +46,7 @@ public class DataBackedServiceTest extends ScenarioTestBase {
 
     @Test(description = "Test employee creation")
     public void testCreateEmployee() throws Exception {
+        Thread.sleep(600000);
         Map<String, String> headers = new HashMap<>(1);
         headers.put(HttpHeaderNames.CONTENT_TYPE.toString(), TestConstant.CONTENT_TYPE_JSON);
         String url = "http://" + host + ":" + port + "/records/employee";
