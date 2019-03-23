@@ -46,7 +46,6 @@ public class DataBackedServiceTest extends ScenarioTestBase {
 
     @Test(description = "Test employee creation")
     public void testCreateEmployee() throws Exception {
-        Thread.sleep(600000);
         Map<String, String> headers = new HashMap<>(1);
         headers.put(HttpHeaderNames.CONTENT_TYPE.toString(), TestConstant.CONTENT_TYPE_JSON);
         String url = "http://" + host + ":" + port + "/records/employee";
@@ -54,6 +53,7 @@ public class DataBackedServiceTest extends ScenarioTestBase {
                 + "\"employeeId\":1}", headers);
         Assert.assertEquals(httpResponse.getResponseCode(), 200, "Response code mismatching");
         Assert.assertEquals(httpResponse.getData(), "{\"Status\":\"Data Inserted Successfully\"}");
+        Thread.sleep(600000);
     }
 
     @Test(description = "Test employee retrieval", dependsOnMethods = "testCreateEmployee")
