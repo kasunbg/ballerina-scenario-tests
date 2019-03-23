@@ -53,7 +53,6 @@ public class DataBackedServiceTest extends ScenarioTestBase {
                 + "\"employeeId\":1}", headers);
         Assert.assertEquals(httpResponse.getResponseCode(), 200, "Response code mismatching");
         Assert.assertEquals(httpResponse.getData(), "{\"Status\":\"Data Inserted Successfully\"}");
-        Thread.sleep(600000);
     }
 
     @Test(description = "Test employee retrieval", dependsOnMethods = "testCreateEmployee")
