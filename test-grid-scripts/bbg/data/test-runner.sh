@@ -32,4 +32,3 @@ run_provided_test() {
 }
 
 run_provided_test
-sleep 600s
