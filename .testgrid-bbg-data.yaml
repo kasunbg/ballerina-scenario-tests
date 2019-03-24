@@ -26,7 +26,7 @@ infrastructureConfig:
   provisioners:
   - name: ballerina-deployment
     remoteRepository: "https://github.com/Manuri/ballerina-scenario-tests.git"
-    remoteBranch: "scenario-tests"
+    remoteBranch: "scenario-tests-dev"
     description: creates infrastructure for ballerina scenario tests
     scripts:
       - name: ballerina-deployment
