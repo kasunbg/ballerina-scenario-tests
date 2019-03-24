@@ -16,8 +16,8 @@
 # under the License.
 
 readonly test_utils_parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-readonly test_utils_grand_parent_path=$(dirname ${utils_parent_path})
-readonly test_utils_great_grand_parent_path=$(dirname ${utils_grand_parent_path})
+readonly test_utils_grand_parent_path=$(dirname ${test_utils_parent_path})
+readonly test_utils_great_grand_parent_path=$(dirname ${test_utils_grand_parent_path})
 
 # Builds run tests of the provided BBG section profile and copies the surefire reports to teh output directory
 #
