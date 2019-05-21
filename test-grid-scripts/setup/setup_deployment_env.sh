@@ -40,9 +40,26 @@ setup_deployment_env() {
     # Enforce the created namespace for future kubectl usages
     kubectl config set-context $(kubectl config current-context) --namespace=${cluster_namespace}
 
-    local ballerina_version=${infra_config["BallerinaVersion"]}
-    # Install ballerina
-    install_ballerina ${ballerina_version}
+    local ballerina_version_type=${infra_config["BallerinaVersionType"]}
+
+    if [${ballerina_version_type} == "LatestSnapshot"]; then
+        wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml
+        local ballerina_version=$(grep -oP '(?<=<version>).*?(?=</version>)' pom.xml  | head -1)
+        # Install ballerina
+        install_ballerina ${ballerina_version}
+    elif [${ballerina_version_type} == "RC"]; then
+        local rc_location=${infra_config["RCLocation"]};
+        if [${rc_location} == ""]; then
+            echo "RC link not provided!"
+            exit 2
+        fi
+        install_ballerina_from_link ${rc_location}
+    else
+        local ballerina_version=${infra_config["BallerinaVersion"]}
+        if [${ballerina_version} == ""]; then
+            install_ballerina ${ballerina_version}
+        fi
+    fi
 
     echo "TestGroup=${infra_config["TestGroup"]}" >> ${output_dir}/deployment.properties
 }

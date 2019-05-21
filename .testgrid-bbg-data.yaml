@@ -50,7 +50,7 @@ deploymentConfig:
           type: SHELL
           file: test-grid-scripts/bbg/data/deployment-data-backed-service.sh
           inputParameters:
-            BallerinaVersion: "0.990.3"
+            BallerinaVersionType: "LatestSnapshot" #LatestSnapshot/RC
             isDebugEnabled: "true"
             TestGroup: "DataBackedService"
 scenarioConfigs:

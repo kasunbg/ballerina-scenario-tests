@@ -30,6 +30,16 @@ install_ballerina() {
     readonly ballerina_home=${utils_parent_path}/ballerina-${ballerina_version}
 }
 
+# Download and install Ballerina from the provided link
+#
+# $1 - link to download Ballerina
+install_ballerina_from_link() {
+    mkdir ${utils_parent_path}/temp_ballerina_download
+    wget $1 -P ${utils_parent_path}/temp_ballerina_download
+    local ballerina_dist=$(ls ${utils_parent_path}/temp_ballerina_download | head -1)
+    unzip -q ${utils_parent_path}/temp_ballerina_download/${ballerina_dist} -d ${utils_parent_path}
+    readonly ballerina_home=${utils_parent_path}/${ballerina_dist}
+}
 # Downloads and extracts the MySQL connector
 #
 # $1 - Download location
