@@ -44,9 +44,9 @@ setup_deployment_env() {
 
     if [ "${ballerina_version_type}" = "LatestSnapshot" ]; then
         wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml
-        local ballerina_version=$(grep -oP '(?<=<version>).*?(?=</version>)' pom.xml  | head -1)
+        local ballerina_version_in_pom=$(grep -oP '(?<=<version>).*?(?=</version>)' pom.xml  | head -1)
         # Install ballerina
-        install_ballerina ${ballerina_version}
+        install_ballerina ${ballerina_version_in_pom}
     elif [ "${ballerina_version_type}" = "RC" ]; then
         local rc_location=${infra_config["RCLocation"]};
         if [ "${rc_location}" = "" ]; then
@@ -55,11 +55,13 @@ setup_deployment_env() {
         fi
         install_ballerina_from_link ${rc_location}
     else
-        local ballerina_version="${infra_config["BallerinaVersion"]}"
-        if [ "${ballerina_version}" = "" ]; then
-            install_ballerina ${ballerina_version}
+        local ballerina_version_in_yaml="${infra_config["BallerinaVersion"]}"
+        if [ "${ballerina_version_in_yaml}" = "" ]; then
+            install_ballerina ${ballerina_version_in_yaml}
         fi
     fi
+
+    ballerina_version = "$(${ballerina_home}/bin/ballerina version)"
 
     echo "TestGroup=${infra_config["TestGroup"]}" >> ${output_dir}/deployment.properties
 }
