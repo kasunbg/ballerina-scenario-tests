@@ -24,8 +24,14 @@ readonly cluster_name="ballerina-testgrid-cluster-v2"
 # $1 - Ballerina version
 install_ballerina() {
     local ballerina_version=$1
+    if [[ "${ballerina_version}" = "" ]]; then
+        echo "Ballerina version not provided!"
+        exit 2
+    fi
+    echo "Installing Ballerina version: ${ballerina_version}"
     wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-${ballerina_version}.zip --quiet
     unzip -q ballerina-${ballerina_version}.zip -d ${utils_parent_path}
+    ls ${utils_parent_path}
     ${utils_parent_path}/ballerina-${ballerina_version}/bin/ballerina version
     readonly ballerina_home=${utils_parent_path}/ballerina-${ballerina_version}
 }
