@@ -42,21 +42,21 @@ setup_deployment_env() {
 
     local ballerina_version_type=${infra_config["BallerinaVersionType"]}
 
-    if [${ballerina_version_type} == "LatestSnapshot"]; then
+    if [ "${ballerina_version_type}" = "LatestSnapshot" ]; then
         wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml
         local ballerina_version=$(grep -oP '(?<=<version>).*?(?=</version>)' pom.xml  | head -1)
         # Install ballerina
         install_ballerina ${ballerina_version}
-    elif [${ballerina_version_type} == "RC"]; then
+    elif [ "${ballerina_version_type}" = "RC" ]; then
         local rc_location=${infra_config["RCLocation"]};
-        if [${rc_location} == ""]; then
+        if [ "${rc_location}" = "" ]; then
             echo "RC link not provided!"
             exit 2
         fi
         install_ballerina_from_link ${rc_location}
     else
-        local ballerina_version=${infra_config["BallerinaVersion"]}
-        if [${ballerina_version} == ""]; then
+        local ballerina_version="${infra_config["BallerinaVersion"]}"
+        if [ "${ballerina_version}" = "" ]; then
             install_ballerina ${ballerina_version}
         fi
     fi
