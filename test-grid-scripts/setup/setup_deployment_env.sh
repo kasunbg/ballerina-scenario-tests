@@ -47,7 +47,7 @@ setup_deployment_env() {
         local ballerina_version_in_pom=$(grep -oP '(?<=<version>).*?(?=</version>)' ballerinalang-pom.xml  | head -1)
         echo "Ballerina version in pom: ${ballerina_version_in_pom}"
         # Install ballerina
-        install_ballerina ${ballerina_version_in_pom}
+        install_ballerina_nightly ${ballerina_version_in_pom}
     elif [ "${ballerina_version_type}" = "RC" ]; then
         local rc_location=${infra_config["RCLocation"]};
         if [ "${rc_location}" = "" ]; then
