@@ -43,8 +43,9 @@ setup_deployment_env() {
     local ballerina_version_type=${infra_config["BallerinaVersionType"]}
 
     if [ "${ballerina_version_type}" = "LatestSnapshot" ]; then
-        wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml
-        local ballerina_version_in_pom=$(grep -oP '(?<=<version>).*?(?=</version>)' pom.xml  | head -1)
+        wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml -O ballerinalang-pom.xml
+        local ballerina_version_in_pom=$(grep -oP '(?<=<version>).*?(?=</version>)' ballerinalang-pom.xml  | head -1)
+        echo "Ballerina version in pom: ${ballerina_version_in_pom}"
         # Install ballerina
         install_ballerina ${ballerina_version_in_pom}
     elif [ "${ballerina_version_type}" = "RC" ]; then
