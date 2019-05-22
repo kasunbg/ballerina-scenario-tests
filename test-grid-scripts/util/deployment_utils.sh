@@ -29,7 +29,7 @@ install_ballerina() {
         exit 2
     fi
     echo "Installing Ballerina version: ${ballerina_version}"
-    wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-${ballerina_version}.zip --quiet
+    wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-${ballerina_version}.zip
     unzip -q ballerina-${ballerina_version}.zip -d ${utils_parent_path}
     ls ${utils_parent_path}
     ${utils_parent_path}/ballerina-${ballerina_version}/bin/ballerina version
