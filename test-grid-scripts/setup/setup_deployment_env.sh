@@ -46,6 +46,7 @@ setup_deployment_env() {
         wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml -O ballerinalang-pom.xml
         local ballerina_version_in_pom=$(grep -oP '(?<=<version>).*?(?=</version>)' ballerinalang-pom.xml  | head -1)
         echo "Ballerina version in pom: ${ballerina_version_in_pom}"
+        echo "Installing the nightly corresponding to the version: ${ballerina_version_in_pom}"
         # Install ballerina
         install_ballerina_nightly ${ballerina_version_in_pom}
     elif [ "${ballerina_version_type}" = "RC" ]; then
@@ -58,8 +59,10 @@ setup_deployment_env() {
     else
         local ballerina_version_in_yaml="${infra_config["BallerinaVersion"]}"
         if [ "${ballerina_version_in_yaml}" = "" ]; then
-            install_ballerina ${ballerina_version_in_yaml}
+            echo "No information provided regarding the Ballerina version to use!"
+            exit 2
         fi
+        install_ballerina ${ballerina_version_in_yaml}
     fi
 
     ballerina_version="$(${ballerina_home}/bin/ballerina version)"

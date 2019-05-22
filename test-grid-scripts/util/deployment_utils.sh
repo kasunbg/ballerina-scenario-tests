@@ -29,7 +29,12 @@ install_ballerina() {
         exit 2
     fi
     echo "Installing Ballerina version: ${ballerina_version}"
-    wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-${ballerina_version}.zip
+    wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-${ballerina_version}.zip --quiet
+    local wget_output=$?
+    if [ ${wget_output} -ne 0 ]; then
+        echo "Ballerina download failed!"
+        exit 2;
+    fi
     unzip -q ballerina-${ballerina_version}.zip -d ${utils_parent_path}
     ls ${utils_parent_path}
     ${utils_parent_path}/ballerina-${ballerina_version}/bin/ballerina version
@@ -41,12 +46,13 @@ install_ballerina() {
 # $1 - Ballerina version
 install_ballerina_nightly() {
     local ballerina_version=$1
-    if [[ "${ballerina_version}" = "" ]]; then
-        echo "Ballerina version not provided!"
-        exit 2
-    fi
     echo "Installing Ballerina version: ${ballerina_version}"
-    wget https://product-dist.ballerina.io/nightly/${ballerina_version}/ballerina-${ballerina_version}.zip
+    wget https://product-dist.ballerina.io/nightly/${ballerina_version}/ballerina-${ballerina_version}.zip --quiet
+    local wget_output=$?
+    if [ ${wget_output} -ne 0 ]; then
+        echo "Ballerina download failed!"
+        exit 2;
+    fi
     unzip -q ballerina-${ballerina_version}.zip -d ${utils_parent_path}
     ls ${utils_parent_path}
     ${utils_parent_path}/ballerina-${ballerina_version}/bin/ballerina version
@@ -58,7 +64,12 @@ install_ballerina_nightly() {
 # $1 - link to download Ballerina
 install_ballerina_from_link() {
     mkdir ${utils_parent_path}/temp_ballerina_download
-    wget $1 -P ${utils_parent_path}/temp_ballerina_download
+    wget $1 -P ${utils_parent_path}/temp_ballerina_download --quiet
+    local wget_output=$?
+    if [ ${wget_output} -ne 0 ]; then
+        echo "Ballerina download failed!"
+        exit 2;
+    fi
     local ballerina_dist=$(ls ${utils_parent_path}/temp_ballerina_download | head -1)
     unzip -q ${utils_parent_path}/temp_ballerina_download/${ballerina_dist} -d ${utils_parent_path}
     readonly ballerina_home=${utils_parent_path}/${ballerina_dist}
