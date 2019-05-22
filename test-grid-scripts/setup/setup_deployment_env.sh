@@ -62,7 +62,7 @@ setup_deployment_env() {
         fi
     fi
 
-    ballerina_version = "$(${ballerina_home}/bin/ballerina version)"
+    ballerina_version="$(${ballerina_home}/bin/ballerina version)"
 
     echo "TestGroup=${infra_config["TestGroup"]}" >> ${output_dir}/deployment.properties
 }
