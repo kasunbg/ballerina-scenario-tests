@@ -64,7 +64,7 @@ install_ballerina_nightly() {
 install_ballerina_from_link() {
     mkdir ${utils_parent_path}/temp_ballerina_download
     echo "Downloading Ballerina pack from: $1"
-    wget $1 -P ${utils_parent_path}/temp_ballerina_download --quiet
+    wget $1 -P ${utils_parent_path}/temp_ballerina_download
     local wget_output=$?
     if [ ${wget_output} -ne 0 ]; then
         echo "Ballerina download failed!"
