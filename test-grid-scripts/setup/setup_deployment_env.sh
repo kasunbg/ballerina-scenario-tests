@@ -50,7 +50,7 @@ setup_deployment_env() {
         # Install ballerina
         install_ballerina_nightly ${ballerina_version_in_pom}
     elif [ "${ballerina_version_type}" = "RC" ]; then
-        local rc_location=${infra_config["RCLocation"]};
+        local rc_location="${infra_config["RCLocation"]}";
         if [ "${rc_location}" = "" ]; then
             echo "RC link not provided!"
             exit 2
