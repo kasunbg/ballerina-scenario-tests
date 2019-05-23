@@ -27,6 +27,7 @@ setup_deployment_env() {
     . ${grand_parent_path}/util/common_utils.sh
     . ${grand_parent_path}/util/deployment_utils.sh
 
+    cat "${input_dir}/infrastructure.properties"
     work_dir=$(pwd)
     declare -g -A infra_config
     read_property_file "${input_dir}/infrastructure.properties" infra_config
