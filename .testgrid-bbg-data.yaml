@@ -52,7 +52,7 @@ deploymentConfig:
           inputParameters:
             #BallerinaVersionType: "LatestSnapshot" #LatestSnapshot/RC
             BallerinaVersionType: "RC"
-            RCLocation: 'https://product-dist.ballerina.io/nightly/0.992.0-m2-SNAPSHOT/ballerina-0.992.0-m2-SNAPSHOT.zip'
+            RCLocation: "https://product-dist.ballerina.io/nightly/0.992.0-m2-SNAPSHOT/ballerina-0.992.0-m2-SNAPSHOT.zip"
             isDebugEnabled: "true"
             TestGroup: "DataBackedService"
 scenarioConfigs:
