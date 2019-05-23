@@ -69,6 +69,7 @@ replace_variables_in_bal_file() {
 build_and_deploy_guide() {
     download_and_extract_mysql_connector ${work_dir}
     cd data-backed-service/guide
+    export BAL_DOCKER_DEBUG=true
     ${ballerina_home}/bin/ballerina build data_backed_service --skiptests
     cd ../..
     kubectl apply -f ${work_dir}/data-backed-service/guide/target/kubernetes/data_backed_service --namespace=${cluster_namespace}
