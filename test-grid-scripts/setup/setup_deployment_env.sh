@@ -65,7 +65,8 @@ setup_deployment_env() {
         install_ballerina ${ballerina_version_in_yaml}
     fi
 
-    ballerina_version="$(${ballerina_home}/bin/ballerina version)"
+    local ballerina_version_cmd_output="$(${ballerina_home}/bin/ballerina version)"
+    ballerina_version=$(sed "s:Ballerina ::g" <<< ${ballerina_version_cmd_output})
 
     echo "TestGroup=${infra_config["TestGroup"]}" >> ${output_dir}/deployment.properties
 }
