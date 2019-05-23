@@ -57,12 +57,13 @@ deploy_mysql_resources() {
 }
 
 replace_variables_in_bal_file() {
-    sed -i "s/default = \"localhost\"/default = \"mysql-service\"/" ${bal_path}
+    sed -i "s/defaultValue = \"localhost\"/defaultValue = \"mysql-service\"/" ${bal_path}
     sed -i "s/<BALLERINA_VERSION>/${ballerina_version}/" ${bal_path}
     sed -i "s:<path_to_JDBC_jar>:"${work_dir}/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar":g" ${bal_path}
     sed -i "s:<USERNAME>:${docker_user}:g" ${bal_path}
     sed -i "s:<PASSWORD>:${docker_password}:g" ${bal_path}
     sed -i "s:ballerina.guides.io:${docker_user}:g" ${bal_path}
+    cat ${bal_path}
 }
 
 build_and_deploy_guide() {
