@@ -55,6 +55,7 @@ setup_deployment_env() {
             echo "RC link not provided!"
             exit 2
         fi
+        echo "Ballerina download location: ${rc_location}"
         install_ballerina_from_link ${rc_location}
     else
         local ballerina_version_in_yaml="${infra_config["BallerinaVersion"]}"
