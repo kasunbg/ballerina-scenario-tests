@@ -15,6 +15,8 @@
 # specific language governing permissions and limitations
 # under the License.
 
+set -o xtrace
+
 readonly deployment_data_parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 readonly deployment_data_grand_parent_path=$(dirname ${deployment_data_parent_path})
 readonly deployment_data_great_grand_parent_path=$(dirname ${deployment_data_grand_parent_path})
