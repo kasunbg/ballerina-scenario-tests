@@ -63,6 +63,7 @@ install_ballerina_nightly() {
 # $1 - link to download Ballerina
 install_ballerina_from_link() {
     mkdir ${utils_parent_path}/temp_ballerina_download
+    echo "Downloading Ballerina pack from: $1"
     wget $1 -P ${utils_parent_path}/temp_ballerina_download --quiet
     local wget_output=$?
     if [ ${wget_output} -ne 0 ]; then
